@@ -1,14 +1,14 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-12 d-flex">
-            <div class="form-group mx-2">
+            <div class="form-group">
                 <button class="btn btn-primary btn-xs" (click)="mostrandoFormulario = !mostrandoFormulario">
                     <fa-icon [icon]="faPlus"></fa-icon>
                     New
                 </button>
             </div>
-            <div class="form-group mx-2">
-                <button class="btn btn-xs btn-primary">
+            <div class="form-group ml-1">
+                <button (click)="generarPDF()" class="btn btn-xs btn-primary">
                     <fa-icon [icon]="faShareSquare"></fa-icon>
                     Export
                 </button>
@@ -16,17 +16,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 d-flex">
-            <div class="form-group mx-2">
+        <div class="col-12 col-lg-8">
+            <div class="form-group">
                 <input id="campoBusqueda" class="form-control" [(ngModel)]="textoBusqueda" type="text" placeholder="Enter shared key" />
+                <div id="btnLimpiar" class="btn btn-default" (click)="limpiarBusqueda()">
+                    <fa-icon [icon]="faTimes"></fa-icon>
+                </div>
+                <div id="btnBuscar" class="btn btn-default" (click)="buscarCliente()">
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </div>
             </div>
-            <div class="form-group mx-2">
-                <button id="btnBuscar" class="btn btn-primary" (click)="buscarCliente()">Search</button>
-            </div>
-            <div class="form-group mx-2">
-                <button id="btnLimpiar" class="btn btn-default" (click)="limpiarBusqueda()">Clean</button>
-            </div>
-            <div class="form-group mx-2">
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="form-group">
                 <button id="btnAvanzada" class="btn btn-primary">Advanced Search</button>
             </div>
         </div>
@@ -38,10 +40,10 @@
         <div class="col-12">
             <app-form [mostrar]="mostrandoFormulario" (formularioEvento)="mostrarFormulario($event)" (creadoEvento)="listarClientes()"></app-form>
 
-            <div class="container mt-5">
-                <h2 class="mb-4 titulo-tabla">Clients</h2>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-sm">
+            <div class="container mt-3 p0">
+                <h4 class="row mb-3 titulo-tabla">Clients</h4>
+                <div class="row table-responsive">
+                    <table id="tabla-clientes" class="table table-bordered table-sm">
                         <thead>
                             <th>Shared Key</th>
                             <th>Business ID</th>
@@ -57,7 +59,11 @@
                                 <td>{{cliente.email}}</td>
                                 <td>{{cliente.phone}}</td>
                                 <td>{{cliente.date_added}}</td>
-                                <td><button disabled class="btn btn-primary" (click)="clienteEditar = cliente"><fa-icon [icon]="faPencilAlt"></fa-icon></button></td>
+                                <td>
+                                    <button disabled class="btn btn-primary" (click)="clienteEditar = cliente">
+                                        <fa-icon [icon]="faPencilAlt"></fa-icon>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table> 

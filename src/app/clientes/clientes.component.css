@@ -1,3 +1,20 @@
 .titulo-tabla {
     color: #007bffcc;
 }
+
+#btnBuscar {
+    position: absolute;
+    right: 14px;
+    top: 0px;
+}
+
+#btnLimpiar {
+    position: absolute;
+    right: 40px;
+    top: 0px;
+}
+
+#tabla-clientes {
+    font-size: 12px;
+    text-align: center;
+}

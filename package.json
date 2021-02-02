@@ -24,10 +24,11 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@popperjs/core": "^2.6.0",
     "bootstrap": "^4.6.0",
+    "export-to-csv": "^0.2.1",
     "jquery": "^3.5.1",
     "ngx-logger": "^4.1.9",
-    "sweetalert2": "^7.29.1",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^7.29.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

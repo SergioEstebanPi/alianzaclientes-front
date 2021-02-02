@@ -5,3 +5,12 @@ ul {
 nav .menu-actual{
     color: #007bffcc;
 }
+
+nav.contenedor-menus {
+    font-size: 14px;
+    line-height: 15px;
+}
+
+nav.contenedor-menus ul {
+    padding: 0px;
+}

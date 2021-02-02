@@ -30,7 +30,7 @@ export class ClientesService {
     );
   }
 
-  buscarCliente(shared_key):Observable<Cliente>{
-    return this.http.get<Cliente>(`${this.urlEndpoint}/${shared_key}`);
+  buscarCliente(shared_key):Observable<Cliente[]>{
+    return this.http.get<Cliente[]>(`${this.urlEndpoint}/${shared_key}`);
   }
 }

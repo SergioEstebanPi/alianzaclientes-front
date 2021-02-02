@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from '../clientes.service';
 import { Cliente } from './cliente';
-import { faPencilAlt, faPlus, faShareSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faPlus, faSearch, faShareSquare, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NGXLogger } from 'ngx-logger';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-clientes',
@@ -18,6 +19,8 @@ export class ClientesComponent implements OnInit {
   faPlus = faPlus;
   faShareSquare = faShareSquare;
   faPencilAlt = faPencilAlt;
+  faSearch = faSearch;
+  faTimes = faTimes;
 
   constructor(private clienteService:ClientesService,
     private logger:NGXLogger) {
@@ -48,6 +51,23 @@ export class ClientesComponent implements OnInit {
     }
   }
 
+  generarPDF() {   
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: 'Administrador de clientes - Alianza',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+    const csvExporter = new ExportToCsv(options);
+    csvExporter.generateCsv(this.clientes);
+  }
+
   mostrarFormulario(estado: boolean) {
     this.mostrandoFormulario = estado;
   }
@@ -65,13 +85,13 @@ export class ClientesComponent implements OnInit {
   buscarCliente(): void {
     if(this.textoBusqueda && this.textoBusqueda != ''){
       this.clienteService.buscarCliente(this.textoBusqueda).subscribe(
-        (clienteJson) => {
+        (clientesJson) => {
           this.textoBusqueda = "";
-          if(clienteJson){
-            let cliente = Cliente.convertToLocal(clienteJson);
-            this.clientes = [cliente];
+          if(clientesJson){
+            let clientesLocal = Cliente.convertClientListToLocal(clientesJson);
+            this.clientes = clientesLocal;
             this.log(1, "Consulta exitosa");
-            this.log(1, cliente);
+            this.log(1, clientesLocal);
           } else {
             this.clientes = [];
           }

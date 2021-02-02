@@ -2,17 +2,17 @@
     <a routerLink="/" class="d-flex align-items-center flex-column logo">
         <img src="/assets/img/logo.png" alt="image">
     </a>
-    <nav class="mt-4">
+    <nav class="d-flex contenedor-menus mt-4">
         <ul>
             <li>
-                <a routerLink="/clientes" class="menu-actual">
+                <a routerLink="/clientes" class="d-flex menu-actual">
                     <fa-icon [icon]="faUserAlt"></fa-icon>
-                    Clients
+                    <p>Clients</p>
                 </a>
             </li>
-            <li><a routerLink="/clientes">Client look history</a></li>
-            <li><a routerLink="/clientes">Emergency PIN configuration</a></li>
-            <li><a routerLink="/clientes">Emergency PIN history</a></li>
+            <li><a routerLink="/clientes"><p>Client look history</p></a></li>
+            <li><a routerLink="/clientes"><p>Emergency PIN configuration</p></a></li>
+            <li><a routerLink="/clientes"><p>Emergency PIN history</p></a></li>
         </ul>
     </nav>
 </div>

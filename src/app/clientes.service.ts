@@ -9,9 +9,6 @@ export class ClientesService {
   clientes:Cliente[];
 
   constructor() {
-  }
-
-  getClientes():Cliente[]{
     this.clientes = [
       {
         id: "1",
@@ -78,7 +75,9 @@ export class ClientesService {
         date_added: "20/05/2019"
       }
     ];
+  }
 
+  getClientes():Cliente[]{
     return this.ordernarArreglo(this.clientes);
   }
 

@@ -6,39 +6,66 @@
       </button>
   </div>
   <div class="card-body">
-      <form>
+    <form #clientForm="ngForm" class="form-horizontal" onsubmit="">
       <div class="form-group row">
-          <label for="" class="col-form-label col-sm-2">Shared Key</label>
-          <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="cliente.shared_key" name="shared_key">
+        <label for="" class="col-form-label col-sm-2">Shared Key</label>
+        <div class="col-sm-6">
+          <input required type="text" class="form-control" [(ngModel)]="cliente.shared_key" name="shared_key" #shared_key="ngModel">
+          <div *ngIf="shared_key.invalid && (shared_key.dirty || shared_key.touched)"
+            class="alert alert-danger">
+            <div *ngIf="shared_key.errors.required">
+              Shared Key is required.
+            </div>
           </div>
+        </div>
       </div>
       <div class="form-group row">
           <label for="" class="col-form-label col-sm-2">Business ID</label>
           <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="cliente.business_id" name="business_id">
+            <input required type="text" class="form-control" [(ngModel)]="cliente.business_id" name="business_id" #business_id="ngModel">
+            <div *ngIf="business_id.invalid && (business_id.dirty || business_id.touched)"
+              class="alert alert-danger">
+              <div *ngIf="business_id.errors.required">
+                Business ID is required.
+              </div>
+            </div>
           </div>
       </div>
       <div class="form-group row">
-          <label for="" class="col-form-label col-sm-2">E-mail</label>
+          <label for="email" class="col-form-label col-sm-2">E-mail</label>
           <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email">
+            <input required email type="text" class="form-control" [(ngModel)]="cliente.email" name="email" #email="ngModel">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="alert alert-danger">
+              <div *ngIf="email.errors.required">
+                E-mail is required.
+              </div>
+              <div *ngIf="email.errors.email">
+                Email must be a valid email address
+              </div>
+            </div>
           </div>
       </div>
       <div class="form-group row">
         <label for="" class="col-form-label col-sm-2">Phone</label>
         <div class="col-sm-6">
-        <input type="text" class="form-control" [(ngModel)]="cliente.phone" name="phone">
+          <input required type="text" class="form-control" [(ngModel)]="cliente.phone" name="phone" #phone="ngModel">
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+            class="alert alert-danger">
+            <div *ngIf="phone.errors.required">
+              Phone is required.
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
       <div class="form-group row">
           <div class="col-sm-6">
-          <button name="button" (click)="create()" *ngIf="!cliente.id else elseBlock" class="btn btn-primary">Create</button>
+          <button [disabled]="clientForm.form.invalid" name="button" (click)="create(clientForm)" *ngIf="!cliente.id else elseBlock" class="btn btn-primary">Create</button>
           <ng-template #elseBlock>
               <button name="button" (click)="update()" class="btn btn-primary">Edit</button>
           </ng-template>
           </div>
       </div>
-      </form>
+    </form>
   </div>
 </div>  

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
 import { Output, EventEmitter } from '@angular/core';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -24,11 +25,16 @@ export class FormComponent implements OnInit {
     this.formularioEvento.emit(value);
   }
 
-  create():void{
-    console.log("Clicked");
+  create(clientForm):void{
     console.log(this.cliente);
-    this.clientesService.crearCliente(this.cliente);
-    console.log("Cliente creado");
-    this.cliente = new Cliente();
+    if(clientForm.form.valid){
+      this.cliente.date_added = formatDate(new Date(), 'dd/MM/yyyy', 'en');
+      this.clientesService.crearCliente(this.cliente);
+      console.log("Cliente creado");
+      this.cliente = new Cliente();
+      clientForm.form.reset();
+    } else {
+      console.log("Error al crear cliente");
+    }
   }
 }

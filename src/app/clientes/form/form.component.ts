@@ -3,6 +3,8 @@ import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
 import { Output, EventEmitter } from '@angular/core';
 import {formatDate} from '@angular/common';
+import { NGXLogger } from 'ngx-logger';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -16,25 +18,52 @@ export class FormComponent implements OnInit {
   @Input() mostrar: boolean = true;
   @Output() formularioEvento = new EventEmitter<boolean>();
   
-  constructor(private clientesService:ClientesService) { }
+  constructor(private clientesService:ClientesService,
+    private logger:NGXLogger) { 
+      
+    }
 
   ngOnInit(): void {
   }
 
+  log(lvl, message){
+    switch(lvl){
+      case 0:
+        this.logger.debug(message);
+        break;
+      case 1:
+        this.logger.info(message);
+        break;
+      case 2:
+        this.logger.log(message);
+        break;
+      case 3:
+        this.logger.warn(message);
+        break;
+      case 4:
+        this.logger.error(message);
+        break;
+    }
+  }
+
   mostrarFormulario(value: boolean) {
+    this.log(0, "Se cierra ventana formulario cliente");
     this.formularioEvento.emit(value);
   }
 
   create(clientForm):void{
-    console.log(this.cliente);
+    this.log(0, this.cliente);
     if(clientForm.form.valid){
       this.cliente.date_added = formatDate(new Date(), 'dd/MM/yyyy', 'en');
       this.clientesService.crearCliente(this.cliente);
-      console.log("Cliente creado");
+      this.log(0, "New client created");
+      swal("New client",
+          `Client ${this.cliente.shared_key} created successfully!`,
+          'success');
       this.cliente = new Cliente();
       clientForm.form.reset();
     } else {
-      console.log("Error al crear cliente");
+      this.log(3, "Campos inválidos");
     }
   }
 }

@@ -1,4 +1,7 @@
+import { DatePipe } from '@angular/common';
+import { HttpBackend } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LoggerConfig, NGXLogger, NGXLoggerHttpService, NgxLoggerLevel, NGXMapperService } from 'ngx-logger';
 
 import { ClientesComponent } from './clientes.component';
 
@@ -8,7 +11,15 @@ describe('ClientesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClientesComponent ]
+      declarations: [ ClientesComponent ],
+      providers: [
+        NGXLogger,
+        NGXMapperService,
+        HttpBackend,
+        NGXLoggerHttpService,
+        LoggerConfig,
+        DatePipe
+      ],
     })
     .compileComponents();
   });

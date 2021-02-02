@@ -1,5 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DatePipe } from '@angular/common';
+import { HttpBackend } from '@angular/common/http';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { LoggerConfig, NGXLogger, NGXLoggerHttpService, NGXMapperService } from 'ngx-logger';
 
 import { FormComponent } from './form.component';
 
@@ -10,8 +13,16 @@ describe('FormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ FormComponent ],
+      providers: [
+        NGXLogger,
+        NGXMapperService,
+        HttpBackend,
+        NGXLoggerHttpService,
+        LoggerConfig,
+        DatePipe
+      ],
       imports: [
-        FormsModule
+        FormsModule,
       ]
     })
     .compileComponents();
@@ -22,7 +33,6 @@ describe('FormComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     component.ngOnInit();
-    component.mostrarFormulario(true);
   });
 
   /*
@@ -46,4 +56,5 @@ describe('FormComponent', () => {
     (<HTMLInputElement>document.getElementById('phone')).value = '3213434312';
     expect(fixture.nativeElement.querySelector('#btnCrearCliente').disabled).toBeFalse();
   });
+
 });

@@ -18,16 +18,16 @@
     <div class="row">
         <div class="col-12 d-flex">
             <div class="form-group mx-2">
-                <input class="form-control" [(ngModel)]="textoBusqueda" type="text" placeholder="Enter shared key" />
+                <input id="campoBusqueda" class="form-control" [(ngModel)]="textoBusqueda" type="text" placeholder="Enter shared key" />
             </div>
             <div class="form-group mx-2">
-                <button class="btn btn-primary" (click)="buscarCliente()">Search</button>
+                <button id="btnBuscar" class="btn btn-primary" (click)="buscarCliente()">Search</button>
             </div>
             <div class="form-group mx-2">
-                <button class="btn btn-default" (click)="limpiarBusqueda()">Clean</button>
+                <button id="btnLimpiar" class="btn btn-default" (click)="limpiarBusqueda()">Clean</button>
             </div>
             <div class="form-group mx-2">
-                <button class="btn btn-primary">Advanced Search</button>
+                <button id="btnAvanzada" class="btn btn-primary">Advanced Search</button>
             </div>
         </div>
     </div>

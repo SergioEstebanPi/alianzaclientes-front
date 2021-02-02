@@ -6,11 +6,11 @@
       </button>
   </div>
   <div class="card-body">
-    <form #clientForm="ngForm" class="form-horizontal" onsubmit="">
+    <form id="formCliente" #clientForm="ngForm" class="form-horizontal" onsubmit="">
       <div class="form-group row">
         <label for="" class="col-form-label col-sm-2">Shared Key</label>
         <div class="col-sm-6">
-          <input required type="text" class="form-control" [(ngModel)]="cliente.shared_key" name="shared_key" #shared_key="ngModel">
+          <input id="shared_key" required type="text" class="form-control" [(ngModel)]="cliente.shared_key" name="shared_key" #shared_key="ngModel">
           <div *ngIf="shared_key.invalid && (shared_key.dirty || shared_key.touched)"
             class="alert alert-danger">
             <div *ngIf="shared_key.errors.required">
@@ -22,7 +22,7 @@
       <div class="form-group row">
           <label for="" class="col-form-label col-sm-2">Business ID</label>
           <div class="col-sm-6">
-            <input required type="text" class="form-control" [(ngModel)]="cliente.business_id" name="business_id" #business_id="ngModel">
+            <input id="business_id" required type="text" class="form-control" [(ngModel)]="cliente.business_id" name="business_id" #business_id="ngModel">
             <div *ngIf="business_id.invalid && (business_id.dirty || business_id.touched)"
               class="alert alert-danger">
               <div *ngIf="business_id.errors.required">
@@ -34,7 +34,7 @@
       <div class="form-group row">
           <label for="email" class="col-form-label col-sm-2">E-mail</label>
           <div class="col-sm-6">
-            <input required email type="text" class="form-control" [(ngModel)]="cliente.email" name="email" #email="ngModel">
+            <input id="email" required email type="text" class="form-control" [(ngModel)]="cliente.email" name="email" #email="ngModel">
             <div *ngIf="email.invalid && (email.dirty || email.touched)"
               class="alert alert-danger">
               <div *ngIf="email.errors.required">
@@ -49,7 +49,7 @@
       <div class="form-group row">
         <label for="" class="col-form-label col-sm-2">Phone</label>
         <div class="col-sm-6">
-          <input required type="text" class="form-control" [(ngModel)]="cliente.phone" name="phone" #phone="ngModel">
+          <input id="phone" required type="text" class="form-control" [(ngModel)]="cliente.phone" name="phone" #phone="ngModel">
           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
             class="alert alert-danger">
             <div *ngIf="phone.errors.required">
@@ -60,7 +60,7 @@
       </div>
       <div class="form-group row">
           <div class="col-sm-6">
-          <button [disabled]="clientForm.form.invalid" name="button" (click)="create(clientForm)" *ngIf="!cliente.id else elseBlock" class="btn btn-primary">Create</button>
+          <button id="btnCrearCliente" [disabled]="clientForm.form.invalid" name="button" (click)="create(clientForm)" *ngIf="!cliente.id else elseBlock" class="btn btn-primary">Create</button>
           <ng-template #elseBlock>
               <button name="button" (click)="update()" class="btn btn-primary">Edit</button>
           </ng-template>

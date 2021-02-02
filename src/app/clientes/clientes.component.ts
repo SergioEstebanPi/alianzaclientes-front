@@ -11,6 +11,8 @@ export class ClientesComponent implements OnInit {
 
   clientes:Cliente[];
   textoBusqueda:string;
+  mostrarFormulario:boolean;
+  clienteEditar:Cliente;
 
   constructor(private clienteService:ClientesService) {
     
@@ -38,14 +40,6 @@ export class ClientesComponent implements OnInit {
     } else {
       this.listarClientes();
     }
-  }
-
-  agregarCliente(cliente): void {
-
-  }
-
-  editarCliente(cliente_id): void {
-    console.log(cliente_id);
   }
 
   limpiarBusqueda(): void {

@@ -1,0 +1,41 @@
+<div>
+    <div>
+        {{ titulo }}
+    </div>
+    <div>
+        <form>
+        <div>
+            <label for="">Shared Key</label>
+            <div>
+            <input type="text" class="form-control" [(ngModel)]="cliente.shared_key" name="shared_key">
+            </div>
+        </div>
+        <div class="">
+            <label for="">Business ID</label>
+            <div>
+            <input type="text" class="form-control" [(ngModel)]="cliente.business_id" name="business_id">
+            </div>
+        </div>
+        <div class="">
+            <label for="">E-mail</label>
+            <div>
+            <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email">
+            </div>
+        </div>
+        <div class="">
+          <label for="">Phone</label>
+          <div>
+          <input type="text" class="form-control" [(ngModel)]="cliente.phone" name="phone">
+          </div>
+      </div>
+        <div class="">
+            <div class="">
+            <button name="button" (click)="create()" *ngIf="!cliente.id else elseBlock" class="btn btn-primary">Create</button>
+            <ng-template #elseBlock>
+                <button name="button" (click)="update()" class="btn btn-primary">Edit</button>
+            </ng-template>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>  

@@ -82,9 +82,25 @@ export class ClientesService {
     return this.ordernarArreglo(this.clientes);
   }
 
+  crearCliente(cliente){
+    this.clientes.push(cliente);
+  }
+
+  actualizarCliente(nuevoCliente){
+    let resultado = this.clientes.filter((cliente) => cliente.shared_key == nuevoCliente.shared_key)[0];
+    let index = this.clientes.indexOf(resultado);
+    if(resultado){
+      this.clientes[index] = nuevoCliente;
+    }
+  }
+
   buscarCliente(shared_key):Cliente[]{
-    var resultado = this.clientes.filter((cliente) => cliente.shared_key.toLowerCase().includes(shared_key.toLowerCase()));
-    return this.ordernarArreglo(resultado);
+    if(shared_key){
+      let resultado = this.clientes.filter((cliente) => cliente.shared_key.toLowerCase().includes(shared_key.toLowerCase()));
+      return this.ordernarArreglo(resultado);
+    } else {
+      return [];
+    }
   }
 
   ordernarArreglo(arreglo){

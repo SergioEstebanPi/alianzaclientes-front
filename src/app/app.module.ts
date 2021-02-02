@@ -5,16 +5,18 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { FormsModule } from '@angular/forms';
+import { FormComponent } from './clientes/form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     ClientesComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,13 +1,18 @@
-<header>
-    <div class="container">
-        <a routerLink="/" class="logo">{{ appTitle }}</a>
-        <nav>
-            <ul>
-                <li><a routerLink="/clientes">Clients</a></li>
-                <li><a routerLink="/clientes">Client look history</a></li>
-                <li><a routerLink="/clientes">Emergency PIN configuration</a></li>
-                <li><a routerLink="/clientes">Emergency PIN history</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<div class="container mt-5">
+    <a routerLink="/" class="d-flex align-items-center flex-column logo">
+        <img src="/assets/img/logo.png" alt="image">
+    </a>
+    <nav class="mt-4">
+        <ul>
+            <li>
+                <a routerLink="/clientes" class="menu-actual">
+                    <fa-icon [icon]="faUserAlt"></fa-icon>
+                    Clients
+                </a>
+            </li>
+            <li><a routerLink="/clientes">Client look history</a></li>
+            <li><a routerLink="/clientes">Emergency PIN configuration</a></li>
+            <li><a routerLink="/clientes">Emergency PIN history</a></li>
+        </ul>
+    </nav>
+</div>

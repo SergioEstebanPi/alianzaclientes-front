@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   appTitle: string = 'Alianza Clientes';
+  faUserAlt = faUserAlt;
 
   constructor() { }
 

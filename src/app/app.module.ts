@@ -6,6 +6,7 @@ import { NavComponent } from './nav/nav.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from './clientes/form/form.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormComponent } from './clientes/form/form.component';
   imports: [
     BrowserModule,
     FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

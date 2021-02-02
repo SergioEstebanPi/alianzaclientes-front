@@ -1,1 +1,29 @@
-<p>clientes works!</p>
+<button>New</button>
+<button>Export</button>
+<input [(ngModel)]="textoBusqueda" type="text" placeholder="Enter shared key" />
+<button (click)="buscarCliente()">Search</button>
+<button (click)="limpiarBusqueda()">Clean</button>
+<hr>
+<button>Advanced Search</button>
+
+<h2>Clients</h2>
+<table>
+    <thead>
+        <th>Shared Key</th>
+        <th>Business ID</th>
+        <th>E-mail</th>
+        <th>Phone</th>
+        <th>Date Added</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cliente of clientes">
+            <td>{{cliente.shared_key}}</td>
+            <td>{{cliente.business_id}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.phone}}</td>
+            <td>{{cliente.date_added}}</td>
+            <td><button class="btn btn-primary" (click)="editarCliente(cliente.id)">Edit</button></td>
+        </tr>
+    </tbody>
+</table>

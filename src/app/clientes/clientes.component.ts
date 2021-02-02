@@ -54,21 +54,32 @@ export class ClientesComponent implements OnInit {
 
   listarClientes(): void {
     this.log(0, "Inicia consulta de clientes");
-    this.clientes = this.clienteService.getClientes();
+    this.clienteService.getClientes().subscribe(
+      (clientesJson) => {
+        let clienteLocal = Cliente.convertClientListToLocal(clientesJson);
+        this.clientes = clienteLocal;
+      }
+    );
   }
 
   buscarCliente(): void {
     if(this.textoBusqueda && this.textoBusqueda != ''){
-      var resultado = this.clienteService.buscarCliente(this.textoBusqueda);
-      this.textoBusqueda = "";
-      this.log(1, resultado);
-      if(resultado){
-        this.log(1, "Consulta exitosa");
-        this.clientes = resultado;
-      } else {
-        this.log(0, "No se encontró ningún registro");
-        this.clientes = [];
-      }
+      this.clienteService.buscarCliente(this.textoBusqueda).subscribe(
+        (clienteJson) => {
+          this.textoBusqueda = "";
+          if(clienteJson){
+            let cliente = Cliente.convertToLocal(clienteJson);
+            this.clientes = [cliente];
+            this.log(1, "Consulta exitosa");
+            this.log(1, cliente);
+          } else {
+            this.clientes = [];
+          }
+        }, (err) => {
+          this.log(0, "No se encontró ningún registro");
+          this.clientes = [];
+        }
+      );
     } else {
       this.listarClientes();
       this.log(0, "Campo de búsqueda vacío");

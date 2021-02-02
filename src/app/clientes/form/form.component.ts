@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
   titulo:string = "Create New Client";
   @Input() mostrar: boolean = true;
   @Output() formularioEvento = new EventEmitter<boolean>();
+  @Output() creadoEvento = new EventEmitter<boolean>();
   
   constructor(private clientesService:ClientesService,
     private logger:NGXLogger) { 
@@ -55,11 +56,16 @@ export class FormComponent implements OnInit {
     this.log(0, this.cliente);
     if(clientForm.form.valid){
       this.cliente.date_added = formatDate(new Date(), 'dd/MM/yyyy', 'en');
-      this.clientesService.crearCliente(this.cliente);
-      this.log(0, "New client created");
-      swal("New client",
-          `Client ${this.cliente.shared_key} created successfully!`,
-          'success');
+      let shared_key = this.cliente.shared_key;
+      this.clientesService.crearCliente(Cliente.convertToJSON(this.cliente)).subscribe(
+        respuesta => {
+          this.log(0, "New client created");
+          swal("New client",
+              `Client ${shared_key} created successfully!`,
+              'success');
+          this.creadoEvento.emit(true);
+        }
+      );
       this.cliente = new Cliente();
       clientForm.form.reset();
     } else {

@@ -86,7 +86,6 @@ export class ClientesComponent implements OnInit {
     if(this.textoBusqueda && this.textoBusqueda != ''){
       this.clienteService.buscarCliente(this.textoBusqueda).subscribe(
         (clientesJson) => {
-          this.textoBusqueda = "";
           if(clientesJson){
             let clientesLocal = Cliente.convertClientListToLocal(clientesJson);
             this.clientes = clientesLocal;

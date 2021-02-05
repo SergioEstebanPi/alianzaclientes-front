@@ -14,3 +14,7 @@ nav.contenedor-menus {
 nav.contenedor-menus ul {
     padding: 0px;
 }
+
+nav.contenedor-menus ul li a p {
+    padding: 0px 10px;
+}

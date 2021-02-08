@@ -9,8 +9,7 @@ import { Cliente } from './clientes/cliente';
 export class ClientesService {
 
   clientes:Cliente[];
-  private urlEndpointGet:string = "http://localhost:8080/api/clientes";
-  private urlEndpoint:string = "http://localhost:8080/api/cliente";
+  private urlEndpoint:string = "http://localhost:8080/clientes";
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {
@@ -18,7 +17,7 @@ export class ClientesService {
 
   getClientes():Observable<Cliente[]>{
     return this.http.get<Cliente[]>(
-      this.urlEndpointGet
+      this.urlEndpoint
     );;
   }
 

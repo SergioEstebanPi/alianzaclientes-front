@@ -29,6 +29,14 @@ export class ClientesService {
     );
   }
 
+  actualizarCliente(cliente:Cliente):Observable<Cliente>{
+    return this.http.put<Cliente>(
+      this.urlEndpoint,
+      cliente,
+      {headers : this.httpHeaders}
+    );
+  }
+
   buscarCliente(shared_key):Observable<Cliente[]>{
     return this.http.get<Cliente[]>(`${this.urlEndpoint}/${shared_key}`);
   }

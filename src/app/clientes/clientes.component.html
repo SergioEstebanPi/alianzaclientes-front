@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 d-flex">
             <div class="form-group">
-                <button class="btn btn-primary btn-xs" (click)="mostrandoFormulario = !mostrandoFormulario">
+                <button class="btn btn-primary btn-xs" (click)="mostrarFormulario(true)">
                     <fa-icon [icon]="faPlus"></fa-icon>
                     New
                 </button>
@@ -38,7 +38,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <app-form [mostrar]="mostrandoFormulario" (formularioEvento)="mostrarFormulario($event)" (creadoEvento)="listarClientes()"></app-form>
+            <app-form [cliente]="clienteSelect" [mostrar]="mostrandoFormulario" (formularioEvento)="mostrarFormulario($event)" (creadoEvento)="listarClientes()"></app-form>
 
             <div class="container mt-3 p0">
                 <h4 class="row mb-3 titulo-tabla">Clients</h4>
@@ -60,7 +60,7 @@
                                 <td>{{cliente.phone}}</td>
                                 <td>{{cliente.date_added}}</td>
                                 <td>
-                                    <button class="btn btn-primary" (click)="clienteEditar = cliente">
+                                    <button class="btn btn-primary" (click)="editarCliente(cliente)">
                                         <fa-icon [icon]="faPencilAlt"></fa-icon>
                                     </button>
                                 </td>

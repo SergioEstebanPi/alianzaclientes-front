@@ -13,9 +13,9 @@ import { ExportToCsv } from 'export-to-csv';
 export class ClientesComponent implements OnInit {
 
   clientes:Cliente[];
+  clienteSelect:Cliente;
   textoBusqueda:string;
   mostrandoFormulario:boolean;
-  clienteEditar:Cliente;
   faPlus = faPlus;
   faShareSquare = faShareSquare;
   faPencilAlt = faPencilAlt;
@@ -70,6 +70,7 @@ export class ClientesComponent implements OnInit {
 
   mostrarFormulario(estado: boolean) {
     this.mostrandoFormulario = estado;
+    this.clienteSelect = new Cliente();
   }
 
   listarClientes(): void {
@@ -109,6 +110,11 @@ export class ClientesComponent implements OnInit {
     this.log(0, "Limpio campos y consulto los registros");
     this.textoBusqueda = "";
     this.listarClientes();
+  }
+
+  editarCliente(cliente): void {
+    this.mostrandoFormulario = true;
+    this.clienteSelect = cliente;
   }
 
 }

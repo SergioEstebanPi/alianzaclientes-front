@@ -13,9 +13,9 @@ import swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit {
 
-  cliente:Cliente = new Cliente();
   titulo:string = "Create New Client";
   @Input() mostrar: boolean = true;
+  @Input() cliente: Cliente = new Cliente();
   @Output() formularioEvento = new EventEmitter<boolean>();
   @Output() creadoEvento = new EventEmitter<boolean>();
   
@@ -62,6 +62,26 @@ export class FormComponent implements OnInit {
           this.log(0, "New client created");
           swal("New client",
               `Client ${shared_key} created successfully!`,
+              'success');
+          this.creadoEvento.emit(true);
+        }
+      );
+      this.cliente = new Cliente();
+      clientForm.form.reset();
+    } else {
+      this.log(3, "Campos inválidos");
+    }
+  }
+
+  update(clientForm):void{
+    this.log(0, this.cliente);
+    if(clientForm.form.valid){
+      let shared_key = this.cliente.shared_key;
+      this.clientesService.actualizarCliente(Cliente.convertToJSON(this.cliente)).subscribe(
+        respuesta => {
+          this.log(0, "Client updated");
+          swal("Client updated",
+              `Client ${shared_key} updated successfully!`,
               'success');
           this.creadoEvento.emit(true);
         }
